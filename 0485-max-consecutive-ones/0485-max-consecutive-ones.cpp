@@ -3,7 +3,7 @@ public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
         int count = 0;
         int maxi = 0;
-        for(auto i: nums){
+        for(auto &i: nums){
             if(i==1){
                 count++;
             }
