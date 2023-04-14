@@ -1,24 +1,25 @@
 class Solution {
 public:
-    int find(vector<int> nums, int index, vector<int> &dp){
-        if(index == 1){
+    int rob(vector<int>& nums) {
+        if(nums.size() == 2){
             return max(nums[0], nums[1]);
         }
-        if(index == 0){
+        
+        if(nums.size() == 1){
             return nums[0];
         }
         
-        if(dp[index] != -1){
-            return dp[index];
+        vector<int> dp(nums.size() + 1);
+        dp[0] = 0;
+        dp[1] = nums[0];
+        for(int i=2; i<dp.size(); i++){
+            int notPick = dp[i-1];
+            int pick = nums[i-1] + dp[i-2];
+            dp[i] = max(pick, notPick);
         }
         
-        int ans1 = nums[index] + find(nums, index-2, dp);
-        int ans2 = find(nums, index-1, dp);
-        // cout<<ans1<<" "<<ans2<<endl;
-        return dp[index] = max(ans1, ans2);
-    }
-    int rob(vector<int>& nums) {
-        vector<int> dp (nums.size(), -1);
-        return find(nums, nums.size()-1, dp); 
+        for(auto i: dp) cout<<i<<" ";
+        cout<<endl;
+        return dp.back();
     }
 };
