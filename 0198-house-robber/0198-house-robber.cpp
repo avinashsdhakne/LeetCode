@@ -18,8 +18,6 @@ public:
             dp[i] = max(pick, notPick);
         }
         
-        for(auto i: dp) cout<<i<<" ";
-        cout<<endl;
         return dp.back();
     }
 };
