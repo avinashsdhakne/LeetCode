@@ -1,18 +1,15 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        int slow = nums[0];
-		int fast = nums[0];
-		do  {
-			slow = nums[slow];
-			fast = nums[nums[fast]];
-		}while(slow != fast);
-        
-         fast = nums[0];
-        while(slow != fast) {
-            slow = nums[slow];
-            fast = nums[fast];
+        int leader = nums[0];
+        while(1){
+            cout<<leader<<" "<<nums[leader]<<endl;
+            if(nums[leader] == 0) return leader;
+            int temp = leader;
+            leader = nums[leader];
+            nums[temp] = 0;
         }
-        return slow;
+        
+        return 0;
     }
 };
